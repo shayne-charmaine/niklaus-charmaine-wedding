@@ -20,7 +20,7 @@ const resultMsg = document.getElementById('result-message');
 async function loadGuests() {
     try {
         // Fetch the file from your GitHub repository
-        const response = await fetch('guests.csv');
+        const response = await fetch('./guests.csv');
         if (!response.ok) throw new Error("Could not find guests.csv");
         
         const data = await response.text();
