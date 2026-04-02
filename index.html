@@ -10,8 +10,13 @@
 
     <div class="container">
         <h1>Find Your Seat</h1>
+        <p>Please select your name from the list below:</p>
+
         <div class="search-box">
-            <input type="text" id="guestSearch" placeholder="Enter your name..." onkeyup="findSeat()">
+            <select id="guestDropdown">
+                <option value="">-- Select Your Name --</option>
+                </select>
+            <button onclick="findSeat()">Find My Seat</button>
         </div>
 
         <div id="seating-grid" class="grid">
