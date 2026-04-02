@@ -26,33 +26,47 @@ h1 { color: #2c3e50; }
     gap: 10px;
 }
 
-/* Input and Button Styling */
-input[list], button {
+/* --- FIXED INPUT BOX SECTION --- */
+input[list] {
     padding: 12px 20px;
     font-size: 16px;
-    border-radius: 8px;
-    outline: none;
-}
-
-input[list] {
+    height: 45px; /* Added height */
+    line-height: normal; /* Ensures text isn't cut off */
     border: 2px solid #ddd;
+    border-radius: 8px;
     width: 250px;
+    background-color: #ffffff !important; 
+    color: #000000 !important; /* Force black text */
+    outline: none;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-input[list]:focus { border-color: #3498db; }
+input[list]:focus { 
+    border-color: #3498db; 
+}
+
+input[list]::placeholder {
+    color: #95a5a6;
+}
+/* -------------------------------- */
 
 button {
+    height: 45px; /* Matches input height */
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: bold;
     background-color: #3498db;
     color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
     transition: 0.3s;
 }
 
 button:hover { background-color: #2980b9; }
 
-/* The Grid Layout */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -62,7 +76,6 @@ button:hover { background-color: #2980b9; }
     border-radius: 10px;
 }
 
-/* Individual Seat/Table Boxes */
 .seat {
     height: 60px;
     background-color: #eee;
@@ -76,14 +89,12 @@ button:hover { background-color: #2980b9; }
     transition: all 0.4s ease;
 }
 
-/* VIP Special Styling */
 .seat.is-vip {
     background-color: #fff9e6;
     border: 2px solid #f1c40f;
     color: #b7950b;
 }
 
-/* The Highlight Effect */
 .seat.highlight {
     background-color: #2ecc71 !important;
     border-color: #27ae60 !important;
@@ -99,8 +110,8 @@ button:hover { background-color: #2980b9; }
     font-weight: bold;
 }
 
-/* Mobile responsive fixes */
 @media (max-width: 500px) {
-    .search-box { flex-direction: column; }
-    input[list] { width: 100%; box-sizing: border-box; }
+    .search-box { flex-direction: column; align-items: center; }
+    input[list] { width: 100%; }
+    button { width: 100%; }
 }
