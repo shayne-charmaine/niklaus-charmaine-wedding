@@ -1,95 +1,106 @@
-/**
- * 1. YOUR GUEST LIST
- * 'seat' can now be a number (1-21) or a name (VVIP, VIP1, etc.)
- */
-const seatingData = [
-    { name: "Alice Johnson", seat: "VVIP" },
-    { name: "Bob Smith", seat: "1" },
-    { name: "Charlie Brown", seat: "VIP2" },
-    { name: "Diana Prince", seat: "21" },
-    { name: "Edward Norton", seat: "VIP1" },
-];
-
-const grid = document.getElementById('seating-grid');
-const dropdown = document.getElementById('guestDropdown');
-const resultMsg = document.getElementById('result-message');
-
-/**
- * 2. INITIALIZE
- */
-function init() {
-    renderMap();
-    populateDropdown();
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-/**
- * 3. CREATE THE MAP
- * This creates the VIP sections first, then the numbered tables.
- */
-function renderMap() {
-    grid.innerHTML = ""; 
-
-    // Define your special sections
-    const specialSections = ["VVIP", "VIP1", "VIP2", "VIP3"];
-    
-    // Create VIP Seats
-    specialSections.forEach(section => {
-        createSeatBox(section);
-    });
-
-    // Create Numbered Tables 1 to 21
-    for (let i = 1; i <= 21; i++) {
-        createSeatBox(i.toString());
-    }
+.container {
+    background: white;
+    max-width: 900px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-// Helper function to draw the box
-function createSeatBox(id) {
-    const seatDiv = document.createElement('div');
-    seatDiv.classList.add('seat');
-    // We use a special ID format to handle names and numbers
-    seatDiv.id = `seat-${id.replace(/\s+/g, '')}`; 
-    seatDiv.innerText = id;
-    grid.appendChild(seatDiv);
+h1 { color: #2c3e50; }
+
+.search-box {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-/**
- * 4. FILL THE DROPDOWN
- */
-function populateDropdown() {
-    const sortedGuests = [...seatingData].sort((a, b) => a.name.localeCompare(b.name));
-    
-    sortedGuests.forEach(guest => {
-        const opt = document.createElement('option');
-        opt.value = guest.seat.replace(/\s+/g, ''); // Clean the ID
-        opt.innerText = guest.name;
-        dropdown.appendChild(opt);
-    });
+/* Input and Button Styling */
+input[list], button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    outline: none;
 }
 
-/**
- * 5. FIND SEAT LOGIC
- */
-function findSeat() {
-    const selectedSeat = dropdown.value;
-    const allSeats = document.querySelectorAll('.seat');
-    
-    allSeats.forEach(s => s.classList.remove('highlight'));
-    resultMsg.innerText = "";
-
-    if (selectedSeat) {
-        const targetSeat = document.getElementById(`seat-${selectedSeat}`);
-        
-        if (targetSeat) {
-            targetSeat.classList.add('highlight');
-            targetSeat.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            resultMsg.innerText = `Found it! Your location: ${selectedSeat}`;
-            resultMsg.style.color = "#27ae60";
-        }
-    } else {
-        resultMsg.innerText = "Please select a name.";
-        resultMsg.style.color = "#e74c3c";
-    }
+input[list] {
+    border: 2px solid #ddd;
+    width: 250px;
 }
 
-init();
+input[list]:focus { border-color: #3498db; }
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover { background-color: #2980b9; }
+
+/* The Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+/* Individual Seat/Table Boxes */
+.seat {
+    height: 60px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #555;
+    transition: all 0.4s ease;
+}
+
+/* VIP Special Styling */
+.seat.is-vip {
+    background-color: #fff9e6;
+    border: 2px solid #f1c40f;
+    color: #b7950b;
+}
+
+/* The Highlight Effect */
+.seat.highlight {
+    background-color: #2ecc71 !important;
+    border-color: #27ae60 !important;
+    color: white !important;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
+    z-index: 5;
+}
+
+#result-message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 500px) {
+    .search-box { flex-direction: column; }
+    input[list] { width: 100%; box-sizing: border-box; }
+}
