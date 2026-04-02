@@ -97,7 +97,7 @@ button:active {
 .display-box.found-standard {
     background-color: #0a4307;
     border: 4px solid #27ae60;
-    color: #ffffff;
+    color: #27ae60;
     transform: scale(1.1);
     box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
 }
@@ -106,7 +106,7 @@ button:active {
 .display-box.found-vip {
     background-color: #ffffb0;
     border: 4px solid #ffde59;
-    color: #ffffff;
+    color: #ffde59;
     transform: scale(1.1);
     box-shadow: 0 10px 20px rgba(241, 196, 15, 0.3);
 }
