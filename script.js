@@ -1,16 +1,13 @@
 /**
  * 1. YOUR GUEST LIST
- * Add your guest names and their corresponding seat numbers here.
- * The 'seat' value should match the number on the grid.
+ * 'seat' can now be a number (1-21) or a name (VVIP, VIP1, etc.)
  */
 const seatingData = [
-    { name: "Alice Johnson", seat: "1" },
-    { name: "Bob Smith", seat: "2" },
-    { name: "Charlie Brown", seat: "5" },
-    { name: "Diana Prince", seat: "12" },
-    { name: "Edward Norton", seat: "15" },
-    { name: "Fiona Gallagher", seat: "20" },
-    // You can keep adding more guests here following the same format
+    { name: "Alice Johnson", seat: "VVIP" },
+    { name: "Bob Smith", seat: "1" },
+    { name: "Charlie Brown", seat: "VIP2" },
+    { name: "Diana Prince", seat: "21" },
+    { name: "Edward Norton", seat: "VIP1" },
 ];
 
 const grid = document.getElementById('seating-grid');
@@ -18,77 +15,81 @@ const dropdown = document.getElementById('guestDropdown');
 const resultMsg = document.getElementById('result-message');
 
 /**
- * 2. INITIALIZE THE PAGE
- * These functions run automatically when the page loads.
+ * 2. INITIALIZE
  */
 function init() {
-    renderSeats(20);    // Change '20' to the total number of seats you have
+    renderMap();
     populateDropdown();
 }
 
 /**
- * 3. CREATE THE VISUAL GRID
- * This generates the little squares (seats) on your screen.
+ * 3. CREATE THE MAP
+ * This creates the VIP sections first, then the numbered tables.
  */
-function renderSeats(totalSeats) {
-    grid.innerHTML = ""; // Clear existing grid
-    for (let i = 1; i <= totalSeats; i++) {
-        const seatDiv = document.createElement('div');
-        seatDiv.classList.add('seat');
-        seatDiv.id = `seat-${i}`;
-        seatDiv.innerText = i;
-        grid.appendChild(seatDiv);
+function renderMap() {
+    grid.innerHTML = ""; 
+
+    // Define your special sections
+    const specialSections = ["VVIP", "VIP1", "VIP2", "VIP3"];
+    
+    // Create VIP Seats
+    specialSections.forEach(section => {
+        createSeatBox(section);
+    });
+
+    // Create Numbered Tables 1 to 21
+    for (let i = 1; i <= 21; i++) {
+        createSeatBox(i.toString());
     }
 }
 
+// Helper function to draw the box
+function createSeatBox(id) {
+    const seatDiv = document.createElement('div');
+    seatDiv.classList.add('seat');
+    // We use a special ID format to handle names and numbers
+    seatDiv.id = `seat-${id.replace(/\s+/g, '')}`; 
+    seatDiv.innerText = id;
+    grid.appendChild(seatDiv);
+}
+
 /**
- * 4. FILL THE DROPDOWN MENU
- * This takes your seatingData and puts the names into the list.
+ * 4. FILL THE DROPDOWN
  */
 function populateDropdown() {
-    // Sort names alphabetically so they are easy to find
     const sortedGuests = [...seatingData].sort((a, b) => a.name.localeCompare(b.name));
     
     sortedGuests.forEach(guest => {
         const opt = document.createElement('option');
-        opt.value = guest.seat; // When selected, this tells us which seat to light up
+        opt.value = guest.seat.replace(/\s+/g, ''); // Clean the ID
         opt.innerText = guest.name;
         dropdown.appendChild(opt);
     });
 }
 
 /**
- * 5. THE SEARCH LOGIC
- * This runs when the "Find My Seat" button is clicked.
+ * 5. FIND SEAT LOGIC
  */
 function findSeat() {
     const selectedSeat = dropdown.value;
     const allSeats = document.querySelectorAll('.seat');
     
-    // Step A: Remove the green highlight from any previous search
     allSeats.forEach(s => s.classList.remove('highlight'));
     resultMsg.innerText = "";
 
-    // Step B: Check if a name was actually selected
     if (selectedSeat) {
         const targetSeat = document.getElementById(`seat-${selectedSeat}`);
         
         if (targetSeat) {
-            // Step C: Highlight the correct seat
             targetSeat.classList.add('highlight');
-            
-            // Step D: Scroll to the seat (helpful for mobile users)
             targetSeat.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Step E: Show a success message
-            resultMsg.innerText = `Found it! You are at Seat ${selectedSeat}.`;
+            resultMsg.innerText = `Found it! Your location: ${selectedSeat}`;
             resultMsg.style.color = "#27ae60";
         }
     } else {
-        resultMsg.innerText = "Please select a name from the list.";
+        resultMsg.innerText = "Please select a name.";
         resultMsg.style.color = "#e74c3c";
     }
 }
 
-// Start the script
 init();
