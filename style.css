@@ -1,58 +1,136 @@
+/* 1. Basic Page Setup */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    padding: 20px;
 }
 
 .container {
-    text-align: center;
-    max-width: 600px;
+    background-color: #ffffff;
+    max-width: 800px;
     width: 100%;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-.search-box input {
-    padding: 12px;
-    width: 80%;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+}
+
+/* 2. Search & Dropdown Area */
+.search-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+select {
+    padding: 12px 20px;
     font-size: 16px;
+    border: 2px solid #dfe6e9;
+    border-radius: 8px;
+    min-width: 250px;
+    outline: none;
+    transition: border-color 0.3s;
 }
 
+select:focus {
+    border-color: #3498db;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* 3. The Seating Grid */
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 seats per row */
-    gap: 10px;
-    background: white;
+    /* This makes the grid responsive: it fills the row automatically */
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 15px;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background-color: #fafafa;
 }
 
+/* 4. Individual Seat Styling */
 .seat {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background-color: #e0e0e0;
-    border-radius: 4px;
+    height: 60px;
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+    color: #34495e;
+    transition: all 0.4s ease;
 }
 
+/* Special styling for VIP boxes to distinguish them */
+.seat[id*="VIP"] {
+    background-color: #fff9e6;
+    border: 2px solid #f1c40f;
+    color: #b7950b;
+}
+
+/* 5. The "Found It!" Highlight Effect */
 .seat.highlight {
-    background-color: #2ecc71;
-    color: white;
-    transform: scale(1.1);
-    font-weight: bold;
-    box-shadow: 0 0 10px #2ecc71;
+    background-color: #2ecc71 !important;
+    border-color: #27ae60 !important;
+    color: white !important;
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
+    z-index: 10;
 }
 
+/* 6. Message Styling */
 #result-message {
-    margin-top: 15px;
+    margin-top: 25px;
+    font-size: 18px;
     font-weight: bold;
-    color: #333;
+    min-height: 24px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .search-box {
+        flex-direction: column;
+        align-items: center;
+    }
+    select, button {
+        width: 100%;
+    }
 }
