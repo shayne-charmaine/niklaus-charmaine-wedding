@@ -95,7 +95,7 @@ button:active {
 
 /* State: Table Assigned (Green) */
 .display-box.found-standard {
-    background-color: #2ecc71;
+    background-color: #0a4307;
     border: 4px solid #27ae60;
     color: #ffffff;
     transform: scale(1.1);
@@ -104,8 +104,8 @@ button:active {
 
 /* State: VIP Assigned (Gold) */
 .display-box.found-vip {
-    background-color: #f1c40f;
-    border: 4px solid #d4ac0d;
+    background-color: #ffffb0;
+    border: 4px solid #ffde59;
     color: #ffffff;
     transform: scale(1.1);
     box-shadow: 0 10px 20px rgba(241, 196, 15, 0.3);
