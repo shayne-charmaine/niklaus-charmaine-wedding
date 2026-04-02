@@ -10,19 +10,17 @@
 
     <div class="container">
         <h1>Find Your Seat</h1>
-        <p>Type your name or select it from the list:</p>
+        <p>Enter your name to reveal your table assignment:</p>
 
         <div class="search-box">
-            <input list="guestList" id="guestInput" placeholder="Enter your name..." autocomplete="off">
-            
-            <datalist id="guestList">
-                </datalist>
-            
+            <input list="guestList" id="guestInput" placeholder="Type your name..." autocomplete="off">
+            <datalist id="guestList"></datalist>
             <button onclick="findSeat()">Find My Seat</button>
         </div>
 
-        <div id="seating-grid" class="grid">
-            </div>
+        <div id="display-box" class="display-box">
+            <span id="seat-label">?</span>
+        </div>
         
         <div id="result-message"></div>
     </div>
