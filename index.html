@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Find Your Seat</title>
-    <meta name="description" content="Quickly find your table assignment for our event.">
+    <title>Niklaus & Charmaine Wedding</title>
+    <meta name="description" content="Find your table assignment for Niklaus and Charmaine's wedding.">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/">
-    <meta property="og:title" content="Find Your Seat">
-    <meta property="og:description" content="Type your name to reveal your seat number!">
+    <meta property="og:url" content="https://nik-and-cha.github.io/niklaus-charmaine-wedding/">
+    <meta property="og:title" content="Niklaus & Charmaine Wedding Seat Finder">
+    <meta property="og:description" content="Type your name to find your seat!">
     
-    <meta property="og:image" content="https://raw.githubusercontent.com/NEW-USERNAME/YOUR-REPO-NAME/main/thumbnail.jpg">
+    <meta property="og:image" content="https://nik-and-cha.github.io/niklaus-charmaine-wedding/thumbnail.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpeg">
 
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Find Your Seat">
-    <meta property="twitter:image" content="https://raw.githubusercontent.com/NEW-USERNAME/YOUR-REPO-NAME/main/thumbnail.jpg">
+    <meta property="twitter:title" content="Niklaus & Charmaine Wedding">
+    <meta property="twitter:image" content="https://nik-and-cha.github.io/niklaus-charmaine-wedding/thumbnail.jpg">
 
     <link rel="icon" type="image/png" href="favicon.png">
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,15 +29,12 @@
     <div class="container">
         <header>
             <h1>Find Your Seat</h1>
-            <p>Enter your name to reveal your table assignment:</p>
+            <p>Welcome to our wedding! Please enter your name:</p>
         </header>
 
         <main class="search-box">
             <input list="guestList" id="guestInput" placeholder="Type your name..." autocomplete="off">
-            
-            <datalist id="guestList">
-                </datalist>
-            
+            <datalist id="guestList"></datalist>
             <button onclick="findSeat()">Find My Seat</button>
         </main>
 
