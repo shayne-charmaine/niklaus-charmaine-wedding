@@ -10,19 +10,21 @@
 
     <div class="container">
         <h1>Find Your Seat</h1>
-        <p>Please select your name from the list below:</p>
+        <p>Type your name or select it from the list:</p>
 
         <div class="search-box">
-            <select id="guestDropdown">
-                <option value="">-- Select Your Name --</option>
-                </select>
+            <input list="guestList" id="guestInput" placeholder="Enter your name..." autocomplete="off">
+            
+            <datalist id="guestList">
+                </datalist>
+            
             <button onclick="findSeat()">Find My Seat</button>
         </div>
 
         <div id="seating-grid" class="grid">
             </div>
         
-        <p id="result-message"></p>
+        <div id="result-message"></div>
     </div>
 
     <script src="script.js"></script>
