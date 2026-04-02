@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Find Your Seat</title>
-    <meta name="title" content="Find Your Seat">
     <meta name="description" content="Quickly find your table assignment for our event.">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/">
     <meta property="og:title" content="Find Your Seat">
     <meta property="og:description" content="Type your name to reveal your seat number!">
-    <meta property="og:image" content="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO-NAME/main/thumbnail.jpg">
+    
+    <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/thumbnail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
 
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/">
     <meta property="twitter:title" content="Find Your Seat">
-    <meta property="twitter:description" content="Type your name to reveal your seat number!">
-    <meta property="twitter:image" content="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO-NAME/main/thumbnail.jpg">
+    <meta property="twitter:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/thumbnail.jpg">
 
     <link rel="icon" type="image/png" href="favicon.png">
 
@@ -27,21 +28,23 @@
 <body>
 
     <div class="container">
-        <h1>Find Your Seat</h1>
-        <p>Enter your name to reveal your table assignment:</p>
+        <header>
+            <h1>Find Your Seat</h1>
+            <p>Enter your name to reveal your table assignment:</p>
+        </header>
 
-        <div class="search-box">
+        <main class="search-box">
             <input list="guestList" id="guestInput" placeholder="Type your name..." autocomplete="off">
             
             <datalist id="guestList">
                 </datalist>
             
             <button onclick="findSeat()">Find My Seat</button>
-        </div>
+        </main>
 
-        <div id="display-box" class="display-box">
+        <section id="display-box" class="display-box">
             <span id="seat-label">?</span>
-        </div>
+        </section>
         
         <div id="result-message"></div>
     </div>
